@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<!--
+	Identity by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+{% load staticfiles%}
+	<head>
+		<title>Actual Experts: Based on Verifiable Data</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="{% static 'myapp/main.css'   %}"/>
+		<noscript><link rel="stylesheet" href="{% static 'myapp/noscript.css'   %}" /></noscript>
+
+        <script>
+            function f(event) {
+                var query = document.getElementById('field').value;
+                document.location = "results.html?q=" + encodeURI(query);
+            }
+        </script>
+    </head>
+
+	<body class="is-loading">
+		<!-- Wrapper -->
+			<div id="wrapper">
+				<!-- Main -->
+                <section id="main">
+                <h1>Make sense of your Data!</h1>
+                    <form action="{% url "result" %}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <p>{{ form.non_field_errors }}</p>
+
+            <p>{{ form.docfile.label_tag }} {{ form.docfile.help_text }}</p>
+
+            <p>
+                {{ form.docfile.errors }}
+                {{ form.docfile }}
+            </p>
+
+                        <p><input type="submit" value="Upload and Get Results"/></p>
+                    </form>
+                    <!--
+                <iframe name="formDestination" style="display:none;"></iframe>
+                    <form action="UploadServlet" method="POST" enctype="multipart/form-data">
+
+
+                        <label for="train" color = "green"><strong>Choose training data</strong></label>
+                        <input type="file" name="train" id="train" class="inputfile" />
+                        <label for="test"><strong>Choose test data</strong></label>
+                        <input type="file" name="test" id="test" />
+                        <ul class="actions">
+                            <li><a href="#" class="button">Upload and Run Algorithms</a></li>
+                        </ul>
+                    </form>
+                -->
+                </section>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<ul class="copyright">
+							<li>CS597</li>
+							<li>Ratish Garg</li>
+                            <li>University of Illinois at Urbana-Champaign</li>
+							<li>&copy;Design: <a href="http://html5up.net">HTML5 UP</a></li>
+						</ul>
+					</footer>
+
+
+			</div>
+
+		<!-- Scripts -->
+			<!--[if lte IE 8]><script src="assets/js/respond.min.js"></script><![endif]-->
+			<script>
+				if ('addEventListener' in window) {
+					window.addEventListener('load', function() { document.body.className = document.body.className.replace(/\bis-loading\b/, ''); });
+					document.body.className += (navigator.userAgent.match(/(MSIE|rv:11\.0)/) ? ' is-ie' : '');
+				}
+			</script>
+
+	</body>
